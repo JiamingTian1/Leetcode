@@ -1,0 +1,63 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
+     struct ListNode *l3 = (struct ListNode *)malloc(sizeof(struct ListNode));
+    int flag = 0;
+    struct ListNode *lN1 = l1,*lN2 = l2,*lN3 = l3;
+    lN3 -> next = NULL;
+    lN3 -> val = 0;
+    while (lN1 != NULL && lN2 != NULL){
+        struct ListNode *temp = (struct ListNode *)malloc(sizeof(struct ListNode));
+        temp -> val = 0;
+        temp -> next = NULL; 
+        lN3 -> next =temp;
+        lN3 ->val = (flag + lN1->val + lN2->val)%10;
+        flag = (lN1->val + lN2->val + flag)/10;
+        lN1 = lN1->next;
+        lN2 = lN2->next;
+        if(lN1==NULL && lN2 == NULL && flag ==0)
+            lN3->next = NULL;
+        lN3 = lN3->next;
+    }
+    while(lN1 != NULL){
+        struct ListNode *temp = (struct ListNode *)malloc(sizeof(struct ListNode));
+        temp -> val = 0;
+        temp -> next = NULL; 
+        lN3 -> next =temp;
+        lN3 ->val = (flag + lN1->val)%10;
+        flag = (lN1->val + flag)/10;
+        lN1 = lN1->next;
+        if(lN1==NULL && flag ==0)
+            lN3->next = NULL;
+        lN3 = lN3->next;
+        
+    }
+    while(lN2 != NULL){
+        struct ListNode *temp = (struct ListNode *)malloc(sizeof(struct ListNode));
+        temp -> val = 0;
+        temp -> next = NULL; 
+        lN3 -> next =temp;
+        lN3 ->val = (flag + lN2->val)%10;
+        flag = (lN2->val + flag)/10;
+        lN2 = lN2->next;
+        if(lN2==NULL && flag ==0)
+            lN3->next = NULL;
+        lN3 = lN3->next;
+        
+    }
+    if(flag ==1){
+        lN3->val = 1;
+        lN3->next=NULL;
+        lN3 = lN3->next;
+    }
+    return l3;
+    
+}
+
