@@ -1,0 +1,48 @@
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def findLongestPalindrome(s,n):
+            low = 0
+            high = len(s)-1
+            i,j=n,n
+            flag=0
+            if n ==0:
+                return 1
+            elif n==len(s)-1:
+                return 1
+            else:
+                while i>=low and j<=high:
+                    if s[i]==s[j]:
+                        i-=1
+                        j+=1
+                        flag+=1
+                        if i<low or j>high:
+                            break
+                    else:
+                        break
+                return flag
+        p=""
+        for i in s:
+            p+="*"
+            p+=i
+        p+="*"
+        i = 0
+        list=[]
+        max = 0
+        while i<len(p):
+            j=findLongestPalindrome(p,i)
+            if j>max:
+                max = j
+                flag = i
+            list.append(j)
+            i+=1
+        s = p[flag-max+1:flag+max]
+        i=1
+        p=""
+        while i<len(s):
+            p+=s[i]
+            i+=2
+        return p
