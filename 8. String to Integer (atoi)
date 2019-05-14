@@ -1,0 +1,45 @@
+class Solution:
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        i=0
+        flag=0
+        str1=""
+        str= str.split(" ")
+        while i<len(str):
+            if len(str[i])==0:
+                i+=1
+            else:
+                break
+        if i==len(str):
+            return 0
+        str2 = str[i]
+    
+        for p in str2:
+            if p =="+" and flag!=0:
+                
+                break
+            if p =="-" and flag!=0:
+                break
+            if p =="-" and flag==0:
+                flag=1
+            if p =="+" and flag==0:
+                flag=2
+                
+            if "0"<=p <="9" and flag ==0:
+                flag=2
+            if "0"<=p <="9" and flag !=0:
+                str1+=p
+            
+            
+            if p>"9" or p<"0" and p!="-" and p!="+":
+                break
+                
+        
+        if len(str1)==0:
+            return 0
+        if int(str1)+flag>2147483649:
+            return (2147483649-flag)*((-1)**flag)
+        return int(str1)*((-1)**flag)
