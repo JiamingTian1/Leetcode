@@ -1,0 +1,23 @@
+class Solution:
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        flag=0
+        if x<0:
+            return False
+        list = []
+        i=0
+        if x<10:
+            return True
+        while x//10 != 0:
+            list.append(x%10)
+            x=x//10
+            flag+=1
+        list.append(x)
+        while i<=flag//2:
+            if list[i]!=list[-i-1]:
+                return False
+            i+=1
+        return True
