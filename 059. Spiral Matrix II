@@ -1,0 +1,57 @@
+class Solution:
+    def generateMatrix(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        p=0
+        list1= []
+        list = []
+        j=0
+        while p<n:
+            
+            list.append([])
+            j=0
+            while j<n:
+                list[p].append(0)
+                j+=1
+            p+=1
+        
+        p=0
+        i=1
+        j=0
+        m=0
+        while i<=n*n:
+          
+            while p<n-m:
+                list[j][p]=i
+                p+=1
+                i+=1
+            p-=1
+           
+            j+=1
+            while j<n-m:
+                list[j][p]=i
+                j+=1
+                i+=1
+            j-=1
+            p-=1
+
+            while p>=m:
+                list[j][p]=i
+                p-=1
+                i+=1
+            p+=1
+            j-=1
+            while j>=m+1:
+                list[j][p]=i
+                j-=1
+                i+=1
+            j+=1
+            p+=1
+            
+            m+=1
+            
+            
+        
+        return list
