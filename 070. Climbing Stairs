@@ -1,0 +1,12 @@
+class Solution:
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        list=[1,2]
+        i=2
+        while i<n:
+            list.append(list[i-1]+list[i-2])
+            i+=1
+        return list[n-1]
