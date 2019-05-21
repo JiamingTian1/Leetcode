@@ -1,0 +1,28 @@
+class Solution:
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        list = []
+        p = 2**len(nums)
+        i=0
+        
+        while i<p:
+            list.append([])
+        
+            j=0
+            t=i
+            while j<len(nums) :
+                
+                while t!=0:
+                    if t%2 == 1:
+                        list[i].append(nums[j])
+                    
+                    t=t//2
+                    j+=1
+                   
+                j+=1
+            i+=1
+            
+        return list
