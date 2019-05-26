@@ -1,0 +1,43 @@
+class Solution:
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        bigger=[]
+        smaller=[]
+        mark=0
+        target=[]
+        flag=len(nums)//2+1
+        while len(target)<flag:
+            
+            if len(bigger)>len(smaller):
+                i=0
+                nums.clear()
+                while i<len(bigger):
+                    nums.append(bigger[i])
+                    i+=1
+            if len(bigger)<len(smaller):
+                i=0
+                nums.clear()
+                while i<len(smaller):
+                    nums.append(smaller[i])
+                    i+=1
+                
+           
+            target.clear()
+            bigger.clear()
+            smaller.clear()
+            i=0
+            while i<len(nums):
+                if nums[i]>nums[0]:
+                    bigger.append(nums[i])
+                if nums[i]<nums[0]:
+                    smaller.append(nums[i])
+                    
+                if nums[i]==nums[0]:
+                    target.append(nums[i])
+                i+=1
+                
+            
+        return target[0]
