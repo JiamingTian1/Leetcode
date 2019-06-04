@@ -1,0 +1,34 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        list = []
+        j=0
+        for i in s:
+            while j>0 and j<len(list) and list[j-1]==0:
+                j=j+1
+            if j==len(list):
+                while j>0 and list[j-1] == 0:
+                    j=j-1
+            if j>0 and list[j-1]=='(' and i ==')':
+                list[j-1]=0
+               
+                j=j-1
+                
+                
+                
+            elif j>0 and list[j-1]=='[' and i ==']':
+                list[j-1]=0
+                
+                j=j-1
+                
+            elif j>0 and list[j-1]=='{' and i =='}':
+                list[j-1]=0
+               
+                j=j-1
+                
+            else:
+                list.append(i)
+                j=j+1
+        for i in list:
+            if i != 0:
+                return False
+        return True
