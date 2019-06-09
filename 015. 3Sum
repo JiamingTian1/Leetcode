@@ -1,0 +1,59 @@
+func threeSum(nums []int) [][]int {
+    var p [][]int
+    var q []int
+    flag :=1
+    m := make(map[int]int)
+    for i:=0;i<len(nums);i++{
+        m[-nums[i]]=i+1
+    }
+    for i:=0;i<len(nums);i++{
+        if nums[i]!=0 {
+            flag = 0
+        }
+    }
+    if len(nums)<3{
+        flag = 0
+    }
+    
+    a,b,c:=0,0,0
+    if flag == 1{
+        q=append(q,a,b,c)
+        p=append(p,q)
+        return p
+    }
+    for i:=0;i<len(nums)-1;i++{
+        for j:=i+1;j<len(nums);j++{
+            if m[nums[i]+nums[j]]!=0 &&m[nums[i]+nums[j]]-1!=i &&m[nums[i]+nums[j]]-1 !=j{
+                
+                switch {
+                    case nums[j]>=nums[i] && nums[m[nums[i]+nums[j]]-1]>nums[j]:
+                        a,b,c=nums[m[nums[i]+nums[j]]-1],nums[j],nums[i]
+                    case nums[j]>=nums[i] && nums[m[nums[i]+nums[j]]-1]<nums[i]:
+                        a,b,c=nums[j],nums[i],nums[m[nums[i]+nums[j]]-1]
+                    case nums[j]>=nums[m[nums[i]+nums[j]]-1] && nums[m[nums[i]+nums[j]]-1]>=nums[i]:
+                        a,b,c=nums[j],nums[m[nums[i]+nums[j]]-1],nums[i]
+                    case nums[i]>=nums[j] && nums[m[nums[i]+nums[j]]-1]>nums[i]:
+                        a,b,c=nums[m[nums[i]+nums[j]]-1],nums[i],nums[j]
+                    case nums[i]>=nums[j] && nums[m[nums[i]+nums[j]]-1]<nums[j]:
+                        a,b,c=nums[i],nums[j],nums[m[nums[i]+nums[j]]-1]
+                    case nums[i]>=nums[m[nums[i]+nums[j]]-1] && nums[m[nums[i]+nums[j]]-1]>=nums[j]:
+                        a,b,c=nums[i],nums[m[nums[i]+nums[j]]-1],nums[j]
+                }
+                tag :=0
+                for i:=0;i<len(p);i++{
+                    if a == p[i][0] && b ==p[i][1]{
+                        tag = 1
+                        break
+                    }
+                }
+                if tag == 0{
+                    q=append(q,a,b,c)
+                    p=append(p,q)
+                    q=nil
+                    flag++
+                }
+            }
+        }
+    }
+    return p
+}
