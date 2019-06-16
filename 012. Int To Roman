@@ -1,0 +1,80 @@
+class Solution:
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        list=""
+        if num>=1000:
+            p = num//1000
+            if p ==1:
+                list=list+"M"
+            if p ==2:
+                list=list+"MM"
+            if p ==3:
+                list=list+"MMM"
+            num = num-p*1000
+        if num >= 100:
+            p = num//100
+            if p ==1:
+                list=list+"C"
+            if p ==2:
+                list=list+"CC"
+            if p ==3:
+                list=list+"CCC"
+            if p ==4:
+                list=list+"CD"
+            if p ==5:
+                list=list+"D"
+            if p ==6:
+                list=list+"DC"
+            if p ==7:
+                list=list+"DCC"
+            if p ==8:
+                list=list+"DCCC"
+            if p ==9:
+                list=list+"CM"
+            num = num - p*100
+        if num >= 10:
+            p = num//10
+            if p ==1:
+                list=list+"X"
+            if p ==2:
+                list=list+"XX"
+            if p ==3:
+                list=list+"XXX"
+            if p ==4:
+                list=list+"XL"
+            if p ==5:
+                list=list+"L"
+            if p ==6:
+                list=list+"LX"
+            if p ==7:
+                list=list+"LXX"
+            if p ==8:
+                list=list+"LXXX"
+            if p ==9:
+                list=list+"XC"
+            num = num - p*10
+        if num > 0:
+            p = num
+            if p ==1:
+                list=list+"I"
+            if p ==2:
+                list=list+"II"
+            if p ==3:
+                list=list+"III"
+            if p ==4:
+                list=list+"IV"
+            if p ==5:
+                list=list+"V"
+            if p ==6:
+                list=list+"VI"
+            if p ==7:
+                list=list+"VII"
+            if p ==8:
+                list=list+"VIII"
+            if p ==9:
+                list=list+"IX"
+        return list
+        
