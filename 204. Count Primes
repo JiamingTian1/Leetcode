@@ -1,0 +1,43 @@
+class Solution:
+    def countPrimes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n<=1:
+            return 0
+        flag = 0
+        i=1
+        list1=[]
+ 
+        while i<n:
+            list1.append(1)
+            i+=1
+        i=3
+        j=1
+        while 6*j+2<=len(list1):
+                list1[6*j+2-1]=0
+                j+=1
+        j=1
+        while 6*j-2<=len(list1):
+                list1[6*j-2-1]=0
+                j+=1
+        while i<n**0.5:
+            while list1[i-1]==0 :
+                    i+=1
+            j=i
+            while i*j<=len(list1):
+                list1[i*j-1]=0
+                j+=1
+            i+=1
+                
+            
+        i=2
+        while i<n:
+            if list1[i-1]==1:
+                flag+=1
+            i+=1
+        if n>=7:
+            return flag-1
+        else:
+            return flag
