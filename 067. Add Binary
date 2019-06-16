@@ -1,0 +1,77 @@
+class Solution:
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        i=1
+        flag = 0
+        c=""
+        while i<=len(a) and i<=len(b):
+            if a[-i]=="1" and b[-i]=="0" and flag==1:
+                c+="0"
+                flag=1
+            if a[-i]=="0" and b[-i]=="0" and flag==0:
+                c+="0"
+                flag=0
+            if a[-i]=="0" and b[-i]=="1" and flag==0:
+                c+="1"
+                flag=0
+            if a[-i]=="1" and b[-i]=="0" and flag==0:
+                c+="1"
+                flag=0
+            if a[-i]=="1" and b[-i]=="1" and flag==1:
+                c+="1"
+                flag=1
+            if a[-i]=="0" and b[-i]=="1" and flag==1:
+                c+="0"
+                flag=1
+            
+            if a[-i]=="0" and b[-i]=="0" and flag==1:
+                c+="1"
+                flag=0
+            else :
+                if a[-i]=="1" and b[-i]=="1" and flag==0:
+                    c+="0"
+                    flag=1
+            i+=1
+    
+        if i==len(a) and i==len(b):
+            if flag==1:
+                c+="1"
+        if i>len(b):
+            while i<=len(a):
+                if a[-i]=="1" and flag ==1:
+                    c+="0"
+                    flag = 1
+                if a[-i]=="1" and flag ==0:
+                    c+="1"
+                    flag = 0
+                if a[-i]=="0" and flag ==0:
+                    c+="0"
+                    flag = 0
+                if a[-i]=="0" and flag ==1:
+                    c+="1"
+                    flag = 0
+                i+=1
+        else:
+            while i<=len(b):
+                if b[-i]=="1" and flag ==1:
+                    c+="0"
+                    flag = 1
+                
+                if b[-i]=="1" and flag ==0:
+                    c+="1"
+                    flag = 0
+                if b[-i]=="0" and flag ==0:
+                    c+="0"
+                    flag = 0
+                if b[-i]=="0" and flag ==1:
+                    c+="1"
+                    flag = 0
+                i+=1
+        if flag ==1:
+            c+="1"
+            
+        return c[::-1]
