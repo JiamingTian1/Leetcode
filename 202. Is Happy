@@ -1,0 +1,23 @@
+class Solution:
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        list=[]
+        list1 = []
+        
+        while n!=1:
+            while n>0:
+                list.append(n%10)
+                n//=10
+            
+            for p in list:
+                n+=p*p
+            if n not in list1:
+                list1.append(n)
+            else:
+                return False
+            list.clear()
+            
+        return True
