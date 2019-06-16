@@ -1,0 +1,17 @@
+class Solution:
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        p=11
+        
+        while p>=10:
+            
+            p=0
+            while num>0:
+                p+=num%10
+                num=num//10
+            num=p
+            
+        return p
